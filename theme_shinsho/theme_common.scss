@@ -1,0 +1,570 @@
+/* test
+ * For all media (print, screen)
+ */
+
+/* you can import partial SCSS files */
+/* @import '_variables'; */
+/* @import '_toc'; */
+/* ... */
+
+$topmargin:10mm; /*天*/
+$bottommargin:12mm; /*地*/
+$lrmargin:8mm; /*小口*/
+
+@charset "UTF-8";
+
+html {
+  writing-mode: vertical-rl;
+  orphans: 1;
+  widows: 1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body > section {
+  string-set: section attr(title);
+  break-after: page;
+}
+
+
+@page {
+  size: 114mm 182mm;
+
+  font-size: 8.5pt; /*12Q*/
+  font-family:'Gilda Display', 'GenEiChikuMin', serif;
+
+  margin-top: $topmargin; /*天*/
+  margin-bottom: $bottommargin; /*地*/
+  margin-left: $lrmargin; /*小口*/
+  margin-right: $lrmargin; /*小口*/
+
+/* 塗り足しが必要な場合*/
+/*  bleed: 3mm; */
+/*  marks: crop cross; */
+/*  margin: 0mm; */
+}
+
+@page :left {
+  margin-right: 10mm; /*ノド*/
+  @bottom-left {
+    font-size: 8pt;
+      content: counter(page) '　' env(pub-title);
+      margin-left: 0mm;
+      margin-bottom: 3mm;
+      writing-mode: horizontal-tb;
+  }
+}
+
+@page :right {
+  margin-left: 10mm; /*ノド*/
+  @bottom-right {
+      font-size: 8pt;
+
+      content: string(section) '　' counter(page);
+      margin-right: 5mm;
+      margin-bottom: 3mm;
+/*
+      content: counter(page);
+      width:max-content;
+      text-align:right;
+      padding-right:5mm;
+      padding-bottom:3mm;
+*/
+      writing-mode: horizontal-tb;
+  }
+}
+
+
+html {
+  font-family:'Gilda Display', 'GenEiChikuMin', serif;
+  /* 約物の調整、和欧文間スペース */
+  text-spacing: space-first allow-end ideograph-alpha ideograph-numeric;
+
+  line-height: 2em;
+}
+
+body{
+  margin-top:0mm;
+  margin-bottom:0mm;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 1.35rem;
+  break-after: avoid;
+  line-height: 6rem;
+  letter-spacing: 0.125em;
+}
+
+h2 {
+  font-weight: normal;
+  font-size: 1.18rem;
+  text-indent: 3rem;
+  break-after: avoid;
+  line-height: 4rem;
+}
+
+ruby > rt {
+  font-size: 0.4rem;
+  margin-top:-2px; /*for firefox only*/
+  margin-bottom:-2px; /*for firefox only*/
+  margin-left:-1px; /*for firefox only*/
+  margin-right:-1px; /*for firefox only*/
+}
+
+p {
+  text-indent: 0em;
+  /* 段落先頭約物の調整、行末句読点ぶら下げあり */
+  hanging-punctuation: first allow-end;
+}
+
+header{
+  display:none;
+}
+/* Role-Related Layout Styles */
+/* 前付け */
+section[role="frontmatter"] {
+  position:absolute;
+  bottom:0;
+  left:10vw;
+  width:90vw;
+  height:100vh;
+
+  writing-mode: horizontal-tb;
+  margin:0mm;
+  padding:0;
+  text-align: center;
+  /*
+  width:100vw;
+  height: 100vh;
+  orphans: 1;
+  widows: 1;
+  margin: auto;
+  text-align: center;
+  */
+
+  /* 叢書、文庫、新書などのシリーズ名 */
+  .series {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  /* 題名 */
+  .maintitle {
+    font-family: 'Zen Old Mincho', serif;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 4rem;
+    padding-top:2em;
+    padding-bottom:2em;
+  }
+
+  /* 副題 */
+  .subtitle {
+    display: inline-block;
+    font-family: 'Faster One', cursive;
+    line-height:1.2em; font-style:normal;
+    font-weight:400; font-size: 20px;
+    border-style:solid; border-color:black;
+    padding-top:0em;
+    padding-bottom:0em;
+    width:fit-content;
+    margin-top:2em;
+    margin-bottom:3em;
+    padding-right: 0.15em;
+  }
+
+  /* 補足 */
+  .extra {
+    display:inline-block;
+    width:fit-content;
+    padding-bottom:4em;
+  }
+
+  /* 版元 */
+  .publisher {
+    display:block;
+  }
+
+  .disclaimer {
+    display:block;
+    text-align: left;
+    position: absolute;
+    bottom: 20pt;
+    font-size: 7.5pt;
+    line-height: 13pt;
+  }
+}
+
+
+/* 目次 */
+section[role="toc"]{
+  &:after{
+    counter-reset: chap;
+  }
+  nav{
+    font-size:8.5pt;
+    /* ページ内二段組*/
+    /* 複数ページに跨がる二段組みとしては使えない */
+    /* 複数ページに跨がる二段組みを使う場合は、src.jsonのtocのところで */
+    /* その場合は scr.jsonのstyle>toc>の末尾に */
+    /* ./theme/make_2column.cssを指定すること */
+
+    column-gap: 3em;
+    column-fill: balance; /* autoはchromeの場合表示が崩れる*/
+    column-count:2;
+
+    padding-bottom:12mm;
+    margin-left:0mm;
+    margin-right:0mm;
+
+    width:80vw;
+
+    /* 1階層目にのみ章をつける　*/
+    &>ul,&>ol {
+      counter-reset: chap;
+      & > li{
+        display: flex;
+        flex-direction: column;   /* flex containerの縦書き設定 */
+        justify-content: flex-start;   /* 左右設定 - 右 */
+        align-items: flex-between;   /* 上下配置 - 上 */
+        height:40vh; /* 目次高さ設定 */
+        margin-top:0em;
+        margin-left:0em;
+      }
+
+      /* 第N章　の表示を自動生成する場合にコメントアウトする*/
+      /* 二桁以上の章数だと漢数字表記がおかしくなるため、現状は非推奨*/
+      /* 漢数字表記はcjk-ideographicではなく、@counter-style定義の */
+      /* cjk-decimal か japanese-informal、またはそれ参照したものが望ましい */
+      /* ※202207時点ではcounter-styleはサポート外*/
+      /*
+      & > li::after {
+        display: inline flex;
+        counter-increment: chap;
+        content: "第" counter(chap,cjk-decimal) "章 ";
+        float: top;
+        width: 0em;
+        margin-top: -4em;
+      }
+      */
+    }
+    
+    li {
+      a {
+        display: flex;
+        float:top;
+        width: 100%;
+        text-decoration: none;
+        color: currentcolor;
+        break-inside: avoid;
+        order: 1;
+
+
+        &::before{ /* 点線 */
+          display:inline;
+          float: top;
+          margin-left: 1px;
+          margin-right: 1px;
+          border-top: solid 3px white;
+          border-bottom: solid 3px white;
+          content: "　";
+          background-image : linear-gradient(to bottom, rgb(0, 0, 0), rgb(0, 0, 0) 2px, transparent 1px, transparent 1px); 
+          background-size: 1px 9px; /*間隔に影響*/
+          transform:translate(1px,0px);
+          background-position: center;
+          background-repeat: repeat-y;
+          align-self: flex-end;
+          order: 1;
+          flex: auto;
+        }
+        &::after{ /* リンク */
+          display: inline flex;
+          font-size:5pt;
+          content: target-counter(attr(href, url), page,decimal);
+          transform-origin: 75% 100%;
+          transform: rotate(-90deg);
+          flex: none;
+          order: 1;
+          text-align:left;
+        }
+      }
+    }
+  }
+}
+
+/*献辞*/
+section[role="dedication"]{
+  font-size:8.5pt;
+  position: absolute;
+  top: 60%;
+  left: 55%;
+  height:80vh;
+  transform: translate(-50%, -50%);
+
+}
+
+/*エピグラフ*/
+section[role="epigraph"]{
+}
+
+/* 中扉 */
+section[role="halftitle"] {
+  h1{
+    font-family: 'Zen Old Mincho', serif;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-style: bold;
+    page-break-before: always;
+    page-break-after: always;
+  }
+}
+
+/* 本文 */
+section[role="doc-body"] {
+  font-size:8.75pt; /*12Q / Q指定も可能*/
+  line-height:15pt;
+  page-break-inside: auto;
+
+  text-justify: inter-chacater;
+  text-align: justify;
+  text-align-last:start;
+  /*フォントとの相性によってはこちらのほうが見やすいケースあり*/
+
+  /* 二段組 
+  column関連の指定は、現時点ではbody/html下で指定しないかぎり
+  機能しないのでコメントアウトする。
+  関連→https://github.com/vivliostyle/vivliostyle.js/issues/579
+  代わりにmake_column.cssを本文ファイルで指定して読み込む
+  column-fill:auto;
+  column-gap: 2em;
+  column-count:2;
+  line-height:16pt;
+  margin-left:15mm;
+  margin-right:15mm;
+  */
+  /* 章題 */
+  h1 {
+    display:block;
+/*    position:absolute;*/
+    right:10mm;
+    font-size: 12pt;
+    font-style: normal;
+    line-height:15pt;
+
+    /* 第N章　の表示を自動生成する場合にコメントアウトする*/
+    /* 二桁以上の章数だと漢数字表記がおかしくなるため、現状は非推奨*/
+    /* 漢数字表記はcjk-ideographicではなく、@counter-style定義の */
+    /* cjk-decimal か japanese-informal、またはそれ参照したものが望ましい */
+    /* ※202207時点ではcounter-styleはサポート外*/
+    /*
+    counter-increnemt: chap;
+      &::before{
+      display: inline flex;
+      counter-increment: chap;
+      content: "第" counter(chap,cjk-decimal) "章 ";
+      float: top;
+      width: 0em;
+      margin-top: -4em;
+    }
+    */
+    }
+  
+  /* 章副題 */
+  h2 {
+    font-size:8.75pt;
+    page-break-before: auto;
+    page-break-after: auto;
+    text-indent: 0em;
+    margin-top:2em;
+    line-height:15pt;
+    &:before{
+      content: "◆　";
+      font-size:8.75pt;
+      display:inline;
+    }
+  }
+  &>section{
+    page-break-after: avoid;
+    margin-left:0;
+    margin-right:0;
+  }
+  .body-text {
+    font-style: normal;
+  }
+
+  /* 補足テキスト */
+  .comment{
+    font-style: normal;
+  }
+  .script{ /* 特殊形式 - 台本 */
+    p{
+      padding-top:2em; /*人名の最大文字数を指定*/
+      .name{
+        display:inline-block;
+        margin-top:-2em; /*人名の最大文字数を指定*/
+        &::after{
+          content:"："
+        }
+      }
+    }
+  }
+}
+
+/*本文・特殊形式 - 短編小説の表題+改ページ+本文形式*/
+section[role="doc-body"].shortstory{
+  page-break-before: recto;
+  h1{
+    overflow: visible;
+    font-family: 'Zen Old Mincho', serif;
+    writing-mode: horizontal-tb;
+    position: absolute;
+    left:0pt;
+    margin-top:48vh;    
+    transform:tranlate(-50% -50%);
+    bottom: 0px;
+    font-style: bold;
+    page-break-before: always;
+    page-break-after: avoid;
+    font-size:15pt;
+  }
+  h2:first-of-type:not(.comment) {
+    overflow: visible;
+    position: absolute;
+    writing-mode: horizontal-tb;
+    left:0pt;
+    margin-top:52vh;    
+    page-break-before: avoid;
+    page-break-after: avoid;
+    height:50vh;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    font-style: bold;
+    &::before{
+      content:"";
+    }
+  }
+  section.body-text > p:first-of-type {
+    page-break-before: always;
+  }
+  .comment{
+    h2 {
+      position:relative;
+      display:inline-block;
+      font-size:8.75pt;
+      page-break-before: auto;
+      page-break-after: auto;
+      text-indent: 0em;
+      margin-top:2em;
+      line-height:15pt;
+      &:before{
+        content: "◆　";
+        font-size:8.75pt;
+        display:inline;
+      }
+    }
+  }
+}
+
+/* 後付け */
+section[role='colophon'] {
+  page-break-before: verso;
+  writing-mode: horizontal-tb;
+  width:40vh;
+  height:25vh;
+  position:absolute;
+  vertical-align: bottom;
+  bottom:10mm;
+  font-size:8pt;
+  /* 奥付本体 */
+  .title{
+    font-family: 'Zen Old Mincho', serif;
+    font-size:13pt;
+    line-height:16pt;
+  }
+  dl{
+    display:flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    font-size:8pt;
+    line-height:10pt;
+    margin-top:1px;
+    margin-bottom:1px;
+    margin-left:0px;
+    margin-right:0px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+      dt {
+        width: 20%; /* dt width + dd width must be 100%*/
+      }
+      dd {
+        width: 80%;
+      }
+  }
+  hr {
+    border-top: 1px solid black;
+  }
+  .note{
+    display: block;
+    font-size:7.5pt;
+    line-height:1.6em;
+    border-top: solid 1px black;
+  }
+  /* 著者 */
+  .author {
+    text-align: end;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.125em;
+  }
+}
+
+
+/* Universal Layout settings  */
+
+/* 縦中横 */
+.tcy {
+  text-combine-upright: all;
+}
+
+.upright {
+  text-orientation: upright;
+}
+
+/* 傍点（・） */
+.dotted {
+  font-style: normal;
+  text-emphasis-style: dot;
+}
+
+
+/* 圏点（ゴマ） */
+em.sesame_dot {
+  font-style: normal;
+  text-emphasis-style: sesame;
+}
+
+.start_new_page{
+    page-break-before: always;
+}
+
+/*blank*/
+section[data-type="blank"]{
+    page-break-after: always;
+}
+.en{
+    text-align: justify;
+    text-justify:  inter-word;
+}
+
+.jp{
+    text-align: justify;
+    text-justify:  inter-word;
+}
+
+
+/* and more... 🖋 */

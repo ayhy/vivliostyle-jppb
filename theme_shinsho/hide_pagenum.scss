@@ -1,0 +1,19 @@
+@page :left {
+    margin-right: 10mm; /*ノド*/
+    @bottom-left {
+        content: '　';
+        margin-left: 0mm;
+        margin-bottom: 3mm;
+        writing-mode: horizontal-tb;
+    }
+  }
+  
+  @page :right {
+    margin-left: 10mm; /*ノド*/
+    @bottom-right {
+        content: '　';
+        margin-right: 0mm;
+        margin-bottom: 3mm;
+        writing-mode: horizontal-tb;
+    }
+  }
