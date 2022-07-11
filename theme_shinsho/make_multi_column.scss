@@ -13,7 +13,7 @@ $additonal_margin: ( param.$page_width - param.$lrmargin - param.$bindmargin - (
 /*ページ幅 - 小口 - ノド - 行数x行間で、本文のマージンの余剰不足を計算*/
 
 $column_gap_val: (param.$page-height - param.$topmargin - param.$bottommargin - ($letters * $columns * ( $letter_size + $letter_spacing ) - $columns*$letter_spacing ))/($columns - 1);
-/*ページ高さ - 文字数x段落数x文字サイズx字間/(段落数-1) で必要な段落数を計算*/
+/*ページ高さ -天地 - 文字数x段落数x文字サイズx字間/(段落数-1) で必要な段落数を計算*/
 
 html {
   font-family:'Gilda Display', 'GenEiChikuMin', serif;

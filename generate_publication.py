@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+#!/usr/bin/env python
+
 import os, sys
 import io
 import shlex, subprocess
@@ -158,7 +160,6 @@ def buildHtml(pandocCommandDict):
     pandoc_cmd = "pandoc"
     if len(pandocCommandDict["pandocpath"])>0:
         pandoc_cmd = os.path.realpath(os.path.join(pandocCommandDict["pandocpath"],pandoc_cmd))
-        
     print("checking pandoc version")
     fullcmd = pandoc_cmd + " -v"
     subprocess_outputAll(fullcmd)
@@ -258,6 +259,8 @@ def deleteTempfiles(configDict):
 def parseandprocess(args):
     srcjsonfilepath = "src.json"
     if len(args)>1:
+        srcjsonfilepath = args[1]
+        print(srcjsonfilepath)
         if (len(os.path.dirname(srcjsonfilepath))>0):
             os.chdir(os.path.dirname(srcjsonfilepath))
         srcjsonfilepath=os.path.basename(srcjsonfilepath)
@@ -269,7 +272,7 @@ def parseandprocess(args):
     configDict = updateToCLink(configDict)
     configDict = updatePubJson(configDict)
 
-    print("building html and publication.json complete")#!/usr/bin/env python
+    print("building html and publication.json complete")
 
 if __name__=='__main__':
     parseandprocess(sys.argv)

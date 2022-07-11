@@ -139,7 +139,7 @@
 		],
 		"body": [
 			"./theme_shinsho/theme_common.css",
-			"./theme_shinsho/make_2column.css",
+			"./theme_shinsho/make_multi_column.css",
 			"./utils/dash_vertical.css"
 		],
 		"backmatter": [
