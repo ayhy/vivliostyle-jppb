@@ -1,7 +1,7 @@
 # vivliostyle-jppb
 - vivliostyle japanese-paperback or japanese python-pandoc book
 - vertical 2-row  novel layout (typical for Japanese shinsho / paperback) vivliostyle example. This repo uses pandoc and python to compile html and generate publication.json for display, also  offers utilty wrapper to create front matter (w/ toc) and back matter.
-- 新書二段レイアウトのvivliostyle-cli使用例です。vivliostyle.config.jsではなく、src.jsonからpython+pandocでhtmlとpublication.jsonを生成します。前付に表題紙、目次（本文ファイルから自動生成）、中扉、本文、奥付というフォーマットで出力します。
+- 新書二段レイアウトのvivliostyle-cli使用例です。vivliostyle.config.jsではなく、src.jsonからpython+pandocでhtmlとpublication.jsonを生成します。前付に表題紙、目次（本文ファイルから自動生成）、中扉、本文、奥付というフォーマットで出力します。→[デフォルトのレイアウト例](https://vivliostyle.org/viewer/#src=https://raw.githubusercontent.com/ayhy/vivliostyle-jppb/master/publication.json&bookMode=true)
 
 ## 前提
 * python3.8 or higher
