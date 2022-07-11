@@ -1,7 +1,7 @@
 {
 	"__note": "ファイルパスはsrc.jsonから観た相対パスまたはフルパスで指定します。変換後のファイルはsrc.jsonと同じディレクトリに生成されます。",
 	"pandoc": {
-		"path": "E:/ExternalDisk/creative/dojin-CSS-typesetting/pandoc-latest",
+		"path": "",
 		"_path_": "pandocがインストールされている場合は不要です。ポータブル版のみpathを通してください。",
 		"general_config": [
 			"--strip-comments",
