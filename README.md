@@ -24,7 +24,7 @@ vivliostyle build publication.json
 ```
 
 ### 補足
-* `generate_publication.py`はそれだけだとスクリプトのあるフォルダ内のsrc.jsonを読んで処理を行います。それ以外の名前のjsonファイルや、別フォルダでにあるjsonファイルを指定して`python generate_publication.py book1/src2.json`のように実行することもできます。publication.jsonはsrc.jsonと同一のフォルダに生成され、既に存在している場合はreadingOrderの内容を上書きします。
+* `generate_publication.py`はそれだけだとスクリプトのあるフォルダ内のsrc.jsonを読んで処理を行います。それ以外の名前のjsonファイルや、別フォルダでにあるjsonファイルを指定して`python generate_publication.py book1/src2.json`のように実行することもできます。publication.jsonは指定したjsonファイルと同一のフォルダ内に生成され、既に存在している場合はreadingOrderの内容を上書きします。
 
 
 ## 簡易制作ガイド
@@ -58,17 +58,18 @@ vivliostyle preview publication.json -browser firefox
 ### 補足：レイアウトのカスタマイズ
 * 基礎的なsass(scss)とcssの知識が必要です。
 * 基本的にレイアウトに影響するものは以下の三つです。
-  * `_param.scss`  -本文全体に影響するページサイズ、天地小口ノドの規定
-  * `style-shinho/theme_common.scss` - デフォルトのスタイル
-  * `hide_pagenum.sccss` - ページ番号を非表示にするスタイル
-  * `make_multi-column.scss` - n段組を設定するスタイル
-* を変更してcssに変換するか、theme_common.cssを直接変更してスタイルをいじってください。
+  * `theme-shinho/_param.scss`  -本文全体に影響するページサイズ、天地小口ノドの規定
+  * `theme-shinho/theme_common.scss` - デフォルトのスタイル
+  * `theme-shinho/hide_pagenum.sccss` - ページ番号を非表示にするスタイル
+  * `theme-shinho/make_multi_column.scss` - n段組を設定するスタイル
+* を変更してcssに変換してください。
+  * このテンプレートとはフォルダ構造が違いますが、scssファイル→cssファイルへの変換は[チュートリアル - 既存のテーマのカスタマイズ](https://vivliostyle.org/ja/tutorials/customize/)で解説されているほか、[vscodeのリアルタイムコンパイラ](https://marketplace.visualstudio.com/items?itemName=glenn2223.live-sass)など様々な選択肢があります。
 * ファイル名を変更した場合はsrc.jsonの下の方に読み込むスタイルシート名の設定があるのでそちらも変更してください。
-* このテンプレートとはフォルダ構造が違いますが、scssファイル→cssファイルへの変換は[チュートリアル - 既存のテーマのカスタマイズ](https://vivliostyle.org/ja/tutorials/customize/)で解説されているほか、[vscodeのリアルタイムコンパイラ](https://marketplace.visualstudio.com/items?itemName=glenn2223.live-sass)など様々な選択肢があります。
+
 
 ## Licence
 [MIT](https://github.com/tcnksm/tool/blob/master/LICENCE)
-* レイアウト、改変レイアウトを使う場合はvivliostyle-jppbへの表記をどこかに入れておいてください。
+* vivliostyle-jppbへの表記をどこかに入れておいてください。
 
 ## Author
 [ayhy](https://github.com/ayhy)
