@@ -65,3 +65,10 @@ vivliostyle preview publication.json -browser firefox
 * を変更してcssに変換するか、theme_common.cssを直接変更してスタイルをいじってください。
 * ファイル名を変更した場合はsrc.jsonの下の方に読み込むスタイルシート名の設定があるのでそちらも変更してください。
 * このテンプレートとはフォルダ構造が違いますが、scssファイル→cssファイルへの変換は[チュートリアル - 既存のテーマのカスタマイズ](https://vivliostyle.org/ja/tutorials/customize/)で解説されているほか、[vscodeのリアルタイムコンパイラ](https://marketplace.visualstudio.com/items?itemName=glenn2223.live-sass)など様々な選択肢があります。
+
+## Licence
+[MIT](https://github.com/tcnksm/tool/blob/master/LICENCE)
+* レイアウト、改変レイアウトを使う場合はvivliostyle-jppbへの表記をどこかに入れておいてください。
+
+## Author
+[ayhy](https://github.com/ayhy)
