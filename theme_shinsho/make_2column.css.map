@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,IAAI,AAAA,CACA,WAAW,CAAC,IAAI,CAChB,UAAU,CAAE,GAAG,CACf,YAAY,CAAC,CAAC,CACf",
-    "sources": [
-        "make_2column.scss"
-    ],
-    "names": [],
-    "file": "make_2column.css"
-}
+{"version":3,"sources":["make_2column.scss"],"names":[],"mappings":"AAiBA,KACE,iDAAA,CAEA,wEAAA,CAAA,oEAAA,CAEA,4BAAA,CACA,kBAAA,CACA,yBAAA,CAAA,oBAAA,CAGF,KACE,mBAzBQ,CAyBR,cAzBQ,CA0BR,8BAfe,CAef,yBAfe,CAgBf,qBAAA,CAAA,gBAAA,CAEA,aA1BY,CA2BZ,iBAzBY,CA0BZ,mBA3Bc,CA4Bd,kBAxBiB,CAyBjB,mBAzBiB","file":"make_2column.css"}

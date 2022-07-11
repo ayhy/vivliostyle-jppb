@@ -1,10 +1,10 @@
 # vivliostyle-jppb
- - vivliostyle paperback-japanese or japanese python-pandoc book
-- vertical 2-row  novel layout (typical for Japanese shinsho / paperback) vivliostyle example. This repo uses pandoc and python to compile html and generate publication.json for display, also  offers utilify wrapper to create front matter (w/ toc) and back matter.
+- vivliostyle japanese-paperback or japanese python-pandoc book
+- vertical 2-row  novel layout (typical for Japanese shinsho / paperback) vivliostyle example. This repo uses pandoc and python to compile html and generate publication.json for display, also  offers utilty wrapper to create front matter (w/ toc) and back matter.
 - 新書二段レイアウトのvivliostyle-cli使用例です。vivliostyle.config.jsではなく、src.jsonからpython+pandocでhtmlとpublication.jsonを生成します。前付に表題紙、目次（本文ファイルから自動生成）、中扉、本文、奥付というフォーマットで出力します。
 
 ## 前提
-* python3.8 or higher 
+* python3.8 or higher
 * pandoc2.17 or higher
 
 ## 簡易導入ガイド
@@ -14,11 +14,11 @@
 4. さっきほどのコマンドが`publication.json`ファイルを更新するので、`vivliostyle build publication.json`をやるとPDFが出力されます。
   * `vivliostyle preview publication.json`だとブラウザで確認できます。
 
-* コマンドをまとめるとこう。
+* コマンドまとめ：
 ```
 npm i -g @vivliostyle-cli
-git clone this url
-cd vivliostyle-pbjp
+git clone https://github.com/ayhy/vivliostyle-jppb
+cd vivliostyle-jppb
 python generate_publication.py
 vivliostyle build publication.json
 ```
@@ -44,18 +44,19 @@ vivliostyle preview publication.json -browser firefox
 
 ```
 
-### 補足：自分の書いた文章を読み込むには
- * デフォルトではsource/以下のファイルを読み込むようになっているため、ファイルを変更するか、`src.json`で読み込むファイルを指定して内容を変更できます。
- * `frontmatter1.md`、`frontmatter2.md`、`backmatter.md`については中身の書き換えが必要な箇所のみを変更するのを推奨します。
+### 補足：本文内容の変更
+ * デフォルトではsource/以下のファイルを読み込むようになっているため、ファイルの中身を変更するか、`src.json`で読み込むファイルを指定して出力htmlが参照する元テキストを変更できます。
+ * `__frontmatter1.md`、`__frontmatter2.md`、`__backmatter.md`については中身の書き換えが必要な箇所のみを変更するのを推奨します。
  * 本文はmarkdown記法で書かれるため、二回以上の連続改行は単一の改行へ変換され、無視されます。複数行に渡って空白行を連続させる方法はいくつかありますが、`　`（全角スペース+改行）を行うのが一番楽です。
 
-### 補足：使うフォントを変更するには
+### 補足：フォントの変更
 * [Google Fonts](https://fonts.google.com/)や[Bunny Fonts](https://fonts.bunny.net/)が提供する外部フォントは、それぞれのサイトが提供する`<link>`形式のタグを `/fonts/externalfont.md`に転記することで、css/sassファイルにで当該フォントを`font-family`で指定可能になります。
+  * `<link href=...`形式のファイルはエラーがあって読み込めないことがあります。その場合はダウンロードしてローカルに`@font-face`を指定してください。
 * webフォントとして提供されていない（ttf形式でダウンロードできるフォント）は、`./fonts/localfont.css`に`@font-face`を指定することで、設定したフォントを使用可能です。
 * fonf-face云々の詳細はwebフォント cssとかで解説が沢山あると思うのでここではしません。
 
-### 補足：レイアウトをカスタマイズするには
+### 補足：レイアウトのカスタマイズ
 * 基礎的なcssの知識が必要です。
 * style-shinho/theme_common.scssを変更してcssに変換するか、theme_common.cssを直接変更してスタイルをいじってください。
 * ファイル名を変更した場合はsrc.jsonの下の方に読み込むスタイルシート名の設定があるのでそちらも変更してください。
-* このテンプレートとはフォルダ構造が違いますが、scssファイル→cssファイルへの変換は[チュートリアル - 既存のテーマのカスタマイズ](https://vivliostyle.org/ja/tutorials/customize/)などで解説されています。
+* このテンプレートとはフォルダ構造が違いますが、scssファイル→cssファイルへの変換は[チュートリアル - 既存のテーマのカスタマイズ](https://vivliostyle.org/ja/tutorials/customize/)で解説されているほか、[vscodeのコンパイラ](https://marketplace.visualstudio.com/items?itemName=glenn2223.live-sass)など様々な選択肢があります。

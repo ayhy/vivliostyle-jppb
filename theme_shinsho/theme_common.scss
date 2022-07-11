@@ -7,9 +7,7 @@
 /* @import '_toc'; */
 /* ... */
 
-$topmargin:10mm; /*天*/
-$bottommargin:12mm; /*地*/
-$lrmargin:8mm; /*小口*/
+@use "./_param.scss" as param;
 
 @charset "UTF-8";
 
@@ -31,15 +29,15 @@ body > section {
 
 
 @page {
-  size: 114mm 182mm;
+  size: param.$page_width param.$page_height;
 
   font-size: 8.5pt; /*12Q*/
   font-family:'Gilda Display', 'GenEiChikuMin', serif;
 
-  margin-top: $topmargin; /*天*/
-  margin-bottom: $bottommargin; /*地*/
-  margin-left: $lrmargin; /*小口*/
-  margin-right: $lrmargin; /*小口*/
+  margin-top: param.$topmargin; /*天*/
+  margin-bottom: param.$bottommargin; /*地*/
+  margin-left: param.$lrmargin; /*小口*/
+  margin-right: param.$lrmargin; /*小口*/
 
 /* 塗り足しが必要な場合*/
 /*  bleed: 3mm; */
@@ -48,7 +46,7 @@ body > section {
 }
 
 @page :left {
-  margin-right: 10mm; /*ノド*/
+  margin-right: param.$bindmargin; /*ノド*/
   @bottom-left {
     font-size: 8pt;
       content: counter(page) '　' env(pub-title);
@@ -59,20 +57,21 @@ body > section {
 }
 
 @page :right {
-  margin-left: 10mm; /*ノド*/
+  margin-left: param.$bindmargin; /*ノド*/
   @bottom-right {
       font-size: 8pt;
-
+/*
       content: string(section) '　' counter(page);
       margin-right: 5mm;
       margin-bottom: 3mm;
-/*
+*/
+
       content: counter(page);
       width:max-content;
       text-align:right;
       padding-right:5mm;
       padding-bottom:3mm;
-*/
+
       writing-mode: horizontal-tb;
   }
 }
@@ -82,7 +81,6 @@ html {
   font-family:'Gilda Display', 'GenEiChikuMin', serif;
   /* 約物の調整、和欧文間スペース */
   text-spacing: space-first allow-end ideograph-alpha ideograph-numeric;
-
   line-height: 2em;
 }
 
@@ -329,9 +327,6 @@ section[role="doc-body"] {
   line-height:15pt;
   page-break-inside: auto;
 
-  text-justify: inter-chacater;
-  text-align: justify;
-  text-align-last:start;
   /*フォントとの相性によってはこちらのほうが見やすいケースあり*/
 
   /* 二段組 
