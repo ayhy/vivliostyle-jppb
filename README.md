@@ -56,7 +56,12 @@ vivliostyle preview publication.json -browser firefox
 * fonf-face云々の詳細はwebフォント cssとかで解説が沢山あると思うのでここではしません。
 
 ### 補足：レイアウトのカスタマイズ
-* 基礎的なcssの知識が必要です。
-* style-shinho/theme_common.scssを変更してcssに変換するか、theme_common.cssを直接変更してスタイルをいじってください。
+* 基礎的なsass(scss)とcssの知識が必要です。
+* 基本的にレイアウトに影響するものは以下の三つです。
+  * `_param.scss`  -本文全体に影響するページサイズ、天地小口ノドの規定
+  * `style-shinho/theme_common.scss` - デフォルトのスタイル
+  * `hide_pagenum.sccss` - ページ番号を非表示にするスタイル
+  * `make_multi-column.scss` - n段組を設定するスタイル
+* を変更してcssに変換するか、theme_common.cssを直接変更してスタイルをいじってください。
 * ファイル名を変更した場合はsrc.jsonの下の方に読み込むスタイルシート名の設定があるのでそちらも変更してください。
-* このテンプレートとはフォルダ構造が違いますが、scssファイル→cssファイルへの変換は[チュートリアル - 既存のテーマのカスタマイズ](https://vivliostyle.org/ja/tutorials/customize/)で解説されているほか、[vscodeのコンパイラ](https://marketplace.visualstudio.com/items?itemName=glenn2223.live-sass)など様々な選択肢があります。
+* このテンプレートとはフォルダ構造が違いますが、scssファイル→cssファイルへの変換は[チュートリアル - 既存のテーマのカスタマイズ](https://vivliostyle.org/ja/tutorials/customize/)で解説されているほか、[vscodeのリアルタイムコンパイラ](https://marketplace.visualstudio.com/items?itemName=glenn2223.live-sass)など様々な選択肢があります。
