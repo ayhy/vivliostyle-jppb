@@ -281,8 +281,7 @@ section[role="toc"]{
           display: inline flex;
           font-size:5pt;
           content: target-counter(attr(href, url), page,decimal);
-          transform-origin: 75% 100%;
-          transform: rotate(-90deg);
+          text-combine-upright: all; /*英数字縦中横*/
           flex: none;
           order: 1;
           text-align:left;
@@ -383,7 +382,7 @@ section[role="doc-body"] {
     }
   }
   &>section{
-    page-break-after: avoid;
+    page-break-after: auto;
     margin-left:0;
     margin-right:0;
   }
