@@ -1,7 +1,7 @@
-$page_width: 114mm;
-$page_height: 182mm;
+$page_width: 114mm; /* 印刷版面 - 縦 */
+$page_height: 182mm; /* 印刷版面 - 横 */
 $topmargin:12mm; /*天*/
 $bottommargin:14mm; /*地*/
 $lrmargin:10mm; /*小口*/
 $bindmargin:15mm; /*ノド*/
-
+$bleedmargin:3mm; /*塗り足し*/

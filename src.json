@@ -124,17 +124,14 @@
 	"style": {
 		"titlepage": [
 			"./theme_shinsho/theme_common.css",
-			"./theme_shinsho/hide_pagenum.css",
 			"./utils/dash_vertical.css"
 		],
 		"toc": [
 			"./theme_shinsho/theme_common.css",
-			"./theme_shinsho/hide_pagenum.css",
 			"./utils/dash_vertical.css"
 		],
 		"halftitle": [
 			"./theme_shinsho/theme_common.css",
-			"./theme_shinsho/hide_pagenum.css",
 			"./utils/dash_vertical.css"
 		],
 		"body": [
@@ -144,7 +141,6 @@
 		],
 		"backmatter": [
 			"./theme_shinsho/theme_common.css",
-			"./theme_shinsho/hide_pagenum.css",
 			"./utils/dash_vertical.css"
 		]
 	}

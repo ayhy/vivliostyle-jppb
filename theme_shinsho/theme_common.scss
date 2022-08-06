@@ -34,15 +34,16 @@ body > section {
   font-size: 8.5pt; /*12Q*/
   font-family:'Gilda Display', 'GenEiChikuMin', serif;
 
+/* 断ち切り、塗り足しの指定 - 不要な場合はここをコメントアウトする */
+  bleed: param.$bleedmargin; 
+  marks: crop cross; 
+
+/* 余白の指定 */
   margin-top: param.$topmargin; /*天*/
   margin-bottom: param.$bottommargin; /*地*/
   margin-left: param.$lrmargin; /*小口*/
   margin-right: param.$lrmargin; /*小口*/
 
-/* 塗り足しが必要な場合*/
-/*  bleed: 3mm; */
-/*  marks: crop cross; */
-/*  margin: 0mm; */
 }
 
 @page :left {
@@ -54,28 +55,68 @@ body > section {
       margin-bottom: 3mm;
       writing-mode: horizontal-tb;
   }
+  /* 隠しノンブル - 断ち切りを指定しない場合はコメントアウトする */
+  @top-right-corner {
+    margin-top:calc(0mm - (param.$bleedmargin)*2.0 - 5pt);
+    margin-right:0;
+    vertical-align: top;
+    text-align: right;
+    font-size: 5pt;
+    color:black;
+    content: counter(page);
+    writing-mode: horizontal-tb;
+  }
+
 }
 
 @page :right {
   margin-left: param.$bindmargin; /*ノド*/
   @bottom-right {
       font-size: 8pt;
-/*
+
       content: string(section) '　' counter(page);
       margin-right: 5mm;
       margin-bottom: 3mm;
-*/
-
       content: counter(page);
-      width:max-content;
-      text-align:right;
-      padding-right:5mm;
-      padding-bottom:3mm;
 
       writing-mode: horizontal-tb;
   }
+  /* 隠しノンブル - 断ち切りを指定しない場合はコメントアウトする */
+  @top-left-corner {
+    margin-top:calc(0mm - (param.$bleedmargin)*2.0 - 5pt);
+    margin-left:0;
+    vertical-align: top;
+    text-align: left;
+    font-size: 5pt;
+    color:black;
+    content: counter(page);
+    writing-mode: horizontal-tb;
+  }
 }
 
+@page frontmatter { /* Named page rule (name: "frontmatter") */
+
+  @bottom-left { content: none; }
+  @bottom-right { content: none; }
+}
+
+@page backmatter { /* Named page rule (name: "backmatter") */
+
+  @bottom-left { content: none; }
+  @bottom-right { content: none; }
+}
+
+@page shortstory_title { /* Named page rule (name: "shortstory_title") */
+
+  @bottom-left { content: none; }
+  @bottom-right { content: none; }
+}
+
+@page illustration{
+  margin: calc(0mm - param.$bleedmargin);
+  @bottom-left { content: none; }
+  @bottom-right { content: none; }
+}
 
 html {
   font-family:'Gilda Display', 'GenEiChikuMin', serif;
@@ -125,6 +166,7 @@ header{
 /* Role-Related Layout Styles */
 /* 前付け */
 section[role="frontmatter"] {
+  page: frontmatter;
   position:absolute;
   bottom:0;
   left:10vw;
@@ -198,6 +240,7 @@ section[role="frontmatter"] {
 
 /* 目次 */
 section[role="toc"]{
+  page: frontmatter;
   &:after{
     counter-reset: chap;
   }
@@ -293,6 +336,7 @@ section[role="toc"]{
 
 /*献辞*/
 section[role="dedication"]{
+  page: frontmatter;
   font-size:8.5pt;
   position: absolute;
   top: 60%;
@@ -304,10 +348,12 @@ section[role="dedication"]{
 
 /*エピグラフ*/
 section[role="epigraph"]{
+  page: frontmatter;
 }
 
 /* 中扉 */
 section[role="halftitle"] {
+  page: frontmatter;
   h1{
     font-family: 'Zen Old Mincho', serif;
     position: absolute;
@@ -322,6 +368,7 @@ section[role="halftitle"] {
 
 /* 本文 */
 section[role="doc-body"] {
+  page: default;
   font-size:8.75pt; /*12Q / Q指定も可能*/
   line-height:15pt;
   page-break-inside: auto;
@@ -406,11 +453,31 @@ section[role="doc-body"] {
       }
     }
   }
+  .illustration{ /* 挿絵 - 紙面+塗り足し */
+    page: illustration;
+    position:absolute;
+    margin:0mm;
+    page-break-before: always;
+    page-break-after: always;
+    width:calc(param.$page_width + ( 2 * param.$bleedmargin) );
+    height:calc(param.$page_height + ( 2 * param.$bleedmargin) );
+    /*
+      border-color: gray;
+      border-width: 1px;
+      border-style: dashed;
+    */
+    img{
+      image-resolution: 350dpi;
+    }
+  }
 }
+
+
 
 /*本文・特殊形式 - 短編小説の表題+改ページ+本文形式*/
 section[role="doc-body"].shortstory{
   page-break-before: recto;
+  page: shortstory_title;
   h1{
     overflow: visible;
     font-family: 'Zen Old Mincho', serif;
@@ -442,10 +509,14 @@ section[role="doc-body"].shortstory{
       content:"";
     }
   }
-  section.body-text > p:first-of-type {
-    page-break-before: always;
+  section.body-text{
+    page: default; /*ページ番号を表示状態へ*/
+    & > p:first-of-type {
+      page-break-before: always;
+    }
   }
   .comment{
+    page: default; /*ページ番号を表示状態へ*/
     h2 {
       position:relative;
       display:inline-block;
@@ -466,6 +537,7 @@ section[role="doc-body"].shortstory{
 
 /* 後付け */
 section[role='colophon'] {
+  page: backmatter;
   page-break-before: verso;
   writing-mode: horizontal-tb;
   width:40vh;
@@ -559,6 +631,5 @@ section[data-type="blank"]{
     text-align: justify;
     text-justify:  inter-word;
 }
-
 
 /* and more... 🖋 */

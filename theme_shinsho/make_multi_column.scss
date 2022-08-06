@@ -22,7 +22,6 @@ html {
   
   text-justify:  inter-character;
   text-align: justify;
-  text-align-last: left;
 }
 
 body{
@@ -36,5 +35,6 @@ body{
   margin-left:$additonal_margin;
   margin-right:$additonal_margin;
 
+  text-align-last: left; /* paged media containerの左右への影響を避けるためここに書く */
   }
   
