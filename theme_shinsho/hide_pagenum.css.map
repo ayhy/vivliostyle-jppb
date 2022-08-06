@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,KAAK,CAAL,KAAK,CACD,YAAY,CAAE,IAAI,CAClB,YAAY,CACR,OAAO,CAAE,IAAI,CACb,WAAW,CAAE,GAAG,CAChB,aAAa,CAAE,GAAG,CAClB,YAAY,CAAE,aAAa,EAIjC,KAAK,CAAL,MAAK,CACH,WAAW,CAAE,IAAI,CACjB,aAAa,CACT,OAAO,CAAE,IAAI,CACb,YAAY,CAAE,GAAG,CACjB,aAAa,CAAE,GAAG,CAClB,YAAY,CAAE,aAAa",
-    "sources": [
-        "hide_pagenum.scss"
-    ],
-    "names": [],
-    "file": "hide_pagenum.css"
-}
