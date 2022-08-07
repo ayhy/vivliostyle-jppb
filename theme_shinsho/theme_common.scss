@@ -35,15 +35,16 @@ body > section {
   font-family:'Gilda Display', 'GenEiChikuMin', serif;
 
 /* 断ち切り、塗り足しの指定 - 不要な場合はここをコメントアウトする */
+
+@if param.$use_bleed { 
   bleed: param.$bleedmargin; 
   marks: crop cross; 
-
+}
 /* 余白の指定 */
   margin-top: param.$topmargin; /*天*/
   margin-bottom: param.$bottommargin; /*地*/
   margin-left: param.$lrmargin; /*小口*/
   margin-right: param.$lrmargin; /*小口*/
-
 }
 
 @page :left {
@@ -55,18 +56,20 @@ body > section {
       margin-bottom: 3mm;
       writing-mode: horizontal-tb;
   }
-  /* 隠しノンブル - 断ち切りを指定しない場合はコメントアウトする */
-  @top-right-corner {
-    margin-top:calc(0mm - (param.$bleedmargin)*2.0 - 5pt);
-    margin-right:0;
-    vertical-align: top;
-    text-align: right;
-    font-size: 5pt;
-    color:black;
-    content: counter(page);
-    writing-mode: horizontal-tb;
-  }
 
+  @if param.$use_bleed { 
+    /* 隠しノンブル */
+    @top-right-corner {
+      margin-top:calc(0mm - (param.$bleedmargin)*2.0 - 5pt);
+      margin-right:0;
+      vertical-align: top;
+      text-align: right;
+      font-size: 5pt;
+      color:black;
+      content: counter(page);
+      writing-mode: horizontal-tb;
+    }
+  }
 }
 
 @page :right {
@@ -81,16 +84,34 @@ body > section {
 
       writing-mode: horizontal-tb;
   }
-  /* 隠しノンブル - 断ち切りを指定しない場合はコメントアウトする */
-  @top-left-corner {
-    margin-top:calc(0mm - (param.$bleedmargin)*2.0 - 5pt);
-    margin-left:0;
-    vertical-align: top;
-    text-align: left;
-    font-size: 5pt;
-    color:black;
-    content: counter(page);
-    writing-mode: horizontal-tb;
+  @if param.$use_bleed { 
+    /* 隠しノンブル */
+    @top-left-corner {
+      margin-top:calc(0mm - (param.$bleedmargin)*2.0 - 5pt);
+      margin-left:0;
+      vertical-align: top;
+      text-align: left;
+      font-size: 5pt;
+      color:black;
+      content: counter(page);
+      writing-mode: horizontal-tb;
+    }
+  }
+}
+
+@page :blank { /* 現verでは認識されず、描画もされない？ */
+  @if param.$use_bleed { 
+    /* 隠しノンブル */
+    @top-center {
+      margin-top:calc(0mm - (param.$bleedmargin)*2.0 - 5pt);
+      margin-left:0;
+      vertical-align: top;
+      text-align: left;
+      font-size: 5pt;
+      color:black;
+      content: counter(page);
+      writing-mode: horizontal-tb;
+    }
   }
 }
 
@@ -285,6 +306,7 @@ section[role="toc"]{
         display: inline flex;
         counter-increment: chap;
         content: "第" counter(chap,cjk-decimal) "章 ";
+        text-combine-upright: digits 2;
         float: top;
         width: 0em;
         margin-top: -4em;
@@ -301,7 +323,6 @@ section[role="toc"]{
         color: currentcolor;
         break-inside: avoid;
         order: 1;
-
 
         &::before{ /* 点線 */
           display:inline;
@@ -511,11 +532,8 @@ section[role="doc-body"].shortstory{
   }
   section.body-text{
     page: default; /*ページ番号を表示状態へ*/
-    & > p:first-of-type {
-      page-break-before: always;
-    }
   }
-  .comment{
+  .comment p{
     page: default; /*ページ番号を表示状態へ*/
     h2 {
       position:relative;
