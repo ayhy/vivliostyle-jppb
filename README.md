@@ -58,10 +58,9 @@ vivliostyle preview publication.json -browser firefox
 ### 補足：レイアウトのカスタマイズ
 * 基礎的なsass(scss)とcssの知識が必要です。
 * 基本的にレイアウトに影響するものは以下の三つです。
-  * `theme-shinho/_param.scss`  -本文全体に影響するページサイズ、天地小口ノドの規定
+  * `theme-shinho/_param.scss`  -本文全体に影響するページサイズ、天地小口ノド、タチキリの設定
+  * `theme-shinho/make_multi_column.scss` - n段組および段組内の字数行数の設定
   * `theme-shinho/theme_common.scss` - デフォルトのスタイル
-  * `theme-shinho/hide_pagenum.sccss` - ページ番号を非表示にするスタイル
-  * `theme-shinho/make_multi_column.scss` - n段組を設定するスタイル
 * を変更してcssに変換してください。
   * このテンプレートとはフォルダ構造が違いますが、scssファイル→cssファイルへの変換は[チュートリアル - 既存のテーマのカスタマイズ](https://vivliostyle.org/ja/tutorials/customize/)で解説されているほか、[vscodeのリアルタイムコンパイラ](https://marketplace.visualstudio.com/items?itemName=glenn2223.live-sass)など様々な選択肢があります。
 * ファイル名を変更した場合はsrc.jsonの下の方に読み込むスタイルシート名の設定があるのでそちらも変更してください。

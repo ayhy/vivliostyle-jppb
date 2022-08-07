@@ -532,6 +532,9 @@ section[role="doc-body"].shortstory{
   }
   section.body-text{
     page: default; /*ページ番号を表示状態へ*/
+    & > p:first-of-type {
+      page-break-before: always;
+    }
   }
   .comment p{
     page: default; /*ページ番号を表示状態へ*/
