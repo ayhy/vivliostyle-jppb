@@ -1,5 +1,15 @@
 # Change Log
 
+## 0.0.3 - 2022-08-15
+
+### Added
+- Added footnotes style as `inline-notes` class. Now `[string of inline elements]{.inline-notes}` shows up at a footnote section.
+- 脚注クラス（.footnote）を追加。`[脚注本文]{.footnote}`または`<span class="footnote">脚注本文</span>`の形で脚注が記述できるように。
+
+- Added "title" specification in src.json for body-text. If empty, it will use first header element name as title.
+- 本文htmlの<title>をsrc.jsonで指定できるように。この指定が存在しない場合はファイルの最初の見出し要素をタイトルとして使うように。
+
+
 ## 0.0.2 - 2022-08-06
 
 ### Added

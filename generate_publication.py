@@ -89,13 +89,25 @@ def readJsonConfig(srcjsonfile): #return list of pandoc commands for each file
 
         for chapter in data["body"]["file"]:
             chapterSrc = os.path.join(data["body"]["srcdir"],chapter["src"])
+            
+            if not "title" in chapter: # register empty "title" string if "titile" not speficied in src.json
+                chapter["title"] = ""
+            if not chapter["title"]: #if title is empty string, parse src file and use first header string
+                with open(chapterSrc,"r",encoding="utf-8") as bodymd:
+                    bodysource = bodymd.read()
+                    regex=re.compile("^# [^#].+?\{") #returns header element
+                    section_ids=re.findall(regex,bodysource) 
+                    chapter["title"] = section_ids[0][2:-1] #uses first header element string
+
             if not "output" in chapter: # register hogehoge.html from hogehoge.md as output
                 chapter["output"] = os.path.splitext(chapter["src"])[0] + ".html"
-            chapterArg = (["--output=" + chapter["output"]]
+            chapterArg = (['--metadata title="' + chapter["title"] + '"']
+                          + ["--output=" + chapter["output"]]
                           + generalconfig
                           + fontfamilyStyle
                           + bodyStyle
                           + luaFilter)
+
             chapterArg = " ".join(chapterArg)
             pandocCommandDict["srcAndArg"] = pandocCommandDict["srcAndArg"] + [{"type":"chapter","input":chapterSrc, "arg":chapterArg}]
 

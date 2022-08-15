@@ -15,6 +15,7 @@ html {
   writing-mode: vertical-rl;
   orphans: 1;
   widows: 1;
+  counter-reset: footnote;
 }
 
 * {
@@ -621,6 +622,37 @@ section[role='colophon'] {
 .upright {
   text-orientation: upright;
 }
+
+/* 短い脚注 inline-note*/
+.footnote {
+  float:footnote;
+  font-size: 5%;
+  text-align: left;
+  counter-increment: footnote;
+  vertical-align: top;
+  line-height: 0;
+
+  a {
+    word-break: break-all;
+  }
+  &::footnote-call,
+  &::footnote-marker {
+    text-combine-upright: all;
+    content: '[' counter(footnote) ']';
+  }
+   
+  &::footnote-call {
+    margin-top: -0.175rem;
+    margin-right: -0.3rem;
+    font-size: 5%;
+  }
+
+  &::footnote-marker {
+    margin-top: 0rem;
+  }
+}
+
+
 
 /* 傍点（・） */
 .dotted {
