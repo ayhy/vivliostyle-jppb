@@ -626,12 +626,12 @@ section[role='colophon'] {
 /* 短い脚注 inline-note*/
 .footnote {
   float:footnote;
-  font-size: 5%;
-  text-align: left;
+  font-size: 75%;
   counter-increment: footnote;
+  text-align: right;
   vertical-align: top;
   line-height: 0;
-
+  margin-left:-1.0rem;
   a {
     word-break: break-all;
   }
@@ -639,12 +639,11 @@ section[role='colophon'] {
   &::footnote-marker {
     text-combine-upright: all;
     content: '[' counter(footnote) ']';
+    font-size: 75%;
   }
-   
+
   &::footnote-call {
-    margin-top: -0.175rem;
-    margin-right: -0.3rem;
-    font-size: 5%;
+    margin-top: -0.25rem;
   }
 
   &::footnote-marker {
