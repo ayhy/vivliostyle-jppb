@@ -629,32 +629,35 @@ section[role='colophon'] {
   font-size: 75%;
   counter-increment: footnote;
   text-align: center;
-  vertical-align: top;
-  line-height: 0;
   a {
     word-break: break-all;
   }
-  &::footnote-call,
-  &::footnote-marker {
+
+  &::footnote-call { /*本文側の配置・サイズ指定*/
+    /*英数字ver*/
     text-combine-upright: all;
-    content: '[' counter(footnote) ']';
+    font-weight: bold;
+    content: "[" counter(footnote) "]";
+    /*漢数字ver - 現時点では非推奨*/
+    /* counter-style対応以降はcjk-decimalへの切り替え推奨 */
+    /* content: '(' counter(footnote,cjk-ideographic) ')';*/
     text-align: center;
     vertical-align: bottom;
-    font-size: 75%;
+    margin-top:-0.25rem;
+    margin-bottom:-0.25rem;
+    font-size: 70%;
   }
 
-  &::footnote-call {
-    margin-top: -0.25rem;
-    margin-bottom: -0.25rem;
-    margin-right:-0.25rem;
-
-  }
-
-  &::footnote-marker {
+  &::footnote-marker { /*脚注側の配置・サイズ指定*/
+    text-combine-upright: all;
+    content: "[" counter(footnote) "]";
+    text-align: center;
+    font-weight: bold;
     margin-top: 0rem;
+    font-size: 100%;
   }
   &::before{
-    content:" "
+    content:"　"
   }
 }
 
