@@ -628,10 +628,9 @@ section[role='colophon'] {
   float:footnote;
   font-size: 75%;
   counter-increment: footnote;
-  text-align: right;
+  text-align: center;
   vertical-align: top;
   line-height: 0;
-  margin-left:-1.0rem;
   a {
     word-break: break-all;
   }
@@ -639,15 +638,23 @@ section[role='colophon'] {
   &::footnote-marker {
     text-combine-upright: all;
     content: '[' counter(footnote) ']';
+    text-align: center;
+    vertical-align: bottom;
     font-size: 75%;
   }
 
   &::footnote-call {
     margin-top: -0.25rem;
+    margin-bottom: -0.25rem;
+    margin-right:-0.25rem;
+
   }
 
   &::footnote-marker {
     margin-top: 0rem;
+  }
+  &::before{
+    content:" "
   }
 }
 
