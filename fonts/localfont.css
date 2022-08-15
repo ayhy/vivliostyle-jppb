@@ -10,7 +10,7 @@
 	font-family: 'Zen Old Mincho';
 	font-style: normal;
 	font-weight: 700;
-	src: url(ZenOldMin/zen-old-mincho-japanese-700-normal.woff2) format('woff2'), url(ZenOldMin/zen-old-mincho-japanese-700-normal.woff2) format('woff'); }
+	src: url(ZenOldMin/zen-old-mincho-japanese-700-normal.woff2) format('woff2'), url(ZenOldMin/zen-old-mincho-japanese-700-normal.woff) format('woff'); }
 }
 
 @font-face {
