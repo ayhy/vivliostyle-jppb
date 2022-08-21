@@ -177,9 +177,14 @@ ruby > rt {
 }
 
 p {
+  /* 行頭字下げを手動・全角スペースで行う、テキストエディタに近い形式の場合 */
   text-indent: 0em;
-  /* 段落先頭約物の調整、行末句読点ぶら下げあり */
+  hanging-punctuation: allow-end;
+  /* 段落毎の自動字下げ、括弧開始時の字下げ外しを自動化する場合 */
+  /*
+  text-indent: 1em;
   hanging-punctuation: first allow-end;
+   */
 }
 
 header{
