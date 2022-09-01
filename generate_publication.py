@@ -205,14 +205,14 @@ def updateToCLink(configDict):
             bodypathList = bodypathList + [section["url"]]
             with open(section["url"],"r",encoding="utf-8") as bodyhtml:
                 bodysource = bodyhtml.read()
-                regex=re.compile("id=[^ ].*? ")
+                regex = re.compile("id=[^\n\r\s]+.*?")
                 section_ids=re.findall(regex,bodysource)
                 section["name"] = section_ids[0][3:-1].replace("'","").replace('"','')
 
     for bodypath in bodypathList:
         with open(bodypath,"r",encoding="utf-8") as bodyhtml:
             bodysource = bodyhtml.read()
-            regex=re.compile("id=[^ ].*? ")
+            regex = re.compile("id=[^\n\r\s]+.*?")
             idnameList=re.findall(regex,bodysource)
             for idname in idnameList:
                 idname_trim=idname[3:-1].replace("'","").replace('"','')

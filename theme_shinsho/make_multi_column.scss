@@ -4,12 +4,12 @@
 $columns: 2;
 $letters: 24;
 $rows: 18;
-$letter_size: 3mm;/* 8.5pt _ 12Q */
+$letter_size: param.$body_letter_size;
 $letter_spacing:0.2px;
-$line_height: 5.3mm;
+$line_height: param.$body_line_height;
 
 
-$additonal_margin: ( param.$page_width - param.$lrmargin - param.$bindmargin - ($rows * $line_height) )*0.5;
+$additonal_margin: calc( ( param.$page_width - param.$lrmargin - param.$bindmargin - ($rows * $line_height) ) *0.5 );
 /*ページ幅 - 小口 - ノド - 行数x行間で、本文のマージンの余剰不足を計算*/
 
 $column_gap_val: (param.$page-height - param.$topmargin - param.$bottommargin - ($letters * $columns * ( $letter_size + $letter_spacing ) - $columns*$letter_spacing ))/($columns - 1);
@@ -22,9 +22,7 @@ html {
   
   text-justify:  inter-character;
   text-align: justify;
-}
 
-body{
   column-count:$columns;
   column-gap: $column_gap_val;
   column-fill:auto;
@@ -35,6 +33,24 @@ body{
   margin-left:$additonal_margin;
   margin-right:$additonal_margin;
 
+}
+
+body{
+
   text-align-last: left; /* paged media containerの左右への影響を避けるためここに書く */
   }
   
+/* footnote関連: WIP */
+/*
+@-adapt-footnote-area {
+    background-color:red;
+    display: block;
+    padding:0;
+    column-count:$columns;
+    column-fill:auto;
+}
+*/
+
+@-adapt-footnote-area ::before {
+    display: none;
+}

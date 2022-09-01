@@ -38,7 +38,7 @@
 			"toc-template": "./utils/template-for-markdown-nobody.txt",
 			"src_prepend": "__toc_before.txt",
 			"src_append": "__toc_after.txt",
-			"section_depth": 1,
+			"section_depth": 2,
 			"output": "01toc.html"
 		},
 
@@ -130,6 +130,7 @@
 		],
 		"toc": [
 			"./theme_shinsho/theme_common.css",
+			"./theme_shinsho/make_multi_column.css",
 			"./utils/dash_vertical.css"
 		],
 		"halftitle": [
