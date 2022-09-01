@@ -1,5 +1,14 @@
 # Change Log
 
+## 0.0.4 - 2022-09-01
+
+### Changed
+- decoupled `h1`- `h2` tag and display info to allow flexible hiearchical structure.
+  - header element now requires class `title`. e.g.  `# chaptertitle {.title}`. `subtitle`, `author` class can be also set added under `shortstory` class.
+- ToC can now handle generation of hiearchical table.
+- 階層構造を持った章立てが作れるように。行頭 `#` の個数が`src.json`中の`section_depth`より大きいものは見出しに反映されます。
+  - これにより、第一部-第一章といった階層構造のある章立てをつくることができます。
+
 ## 0.0.3 - 2022-08-15
 
 ### Added
