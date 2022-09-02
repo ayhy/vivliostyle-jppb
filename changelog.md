@@ -4,12 +4,13 @@
 
 ### Added
 - New footnotes style that can be set the end of the column in multi-column area, as opposed to the end of the page. 
-  - usage: `[_脚注内テキスト_]{.incolumn_footnote}` in multi-column text.
-  - Please note this is a ** workaround implelentation as noted in [vivliostyle issue](https://github.com/vivliostyle/vivliostyle.js/issues/981)**, in future all usage will be moved back to `footnote` class.
+  - usage: `[_footnote text_]{.incolumn_footnote}` in multi-column text.
+  - Please note this is a __workaround implelentation as noted in [vivliostyle issue](https://github.com/vivliostyle/vivliostyle.js/issues/981)__, in future all usage will be moved back to `footnote` class.
 
 - 多段組のページで、段落をぶち抜かずに段落内末尾につけられる脚注を追加。
   - `[_脚注内テキスト_]{.incolumn_footnote}`で使えます。
-  - 今回の実装は**[vivliostyleのissue]https://github.com/vivliostyle/vivliostyle.js/issues/981)にあるとおり、@footnoteがサポートされるまでの暫定的なもの**です。`@footnote`がサポートされた後は0.0.3の`footnote`に一本化されます。
+  - 今回の実装は __[Vivliostyleのissue](https://github.com/vivliostyle/vivliostyle.js/issues/981)にあるとおり、@footnoteがサポートされるまでの暫定的なもの__ です。`@footnote`がサポートされた後は段落内脚注も`footnote`に一本化されます。
+
 
 ## 0.0.4 - 2022-09-01
 
