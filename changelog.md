@@ -1,13 +1,25 @@
 # Change Log
 
+## 0.0.5 - 2022-09-02
+
+### Added
+- New footnotes style that can be set the end of the column in multi-column area, as opposed to the end of the page. 
+  - usage: `[_脚注内テキスト_]{.incolumn_footnote}` in multi-column text.
+  - Please note this is a ** workaround implelentation as noted in [vivliostyle issue](https://github.com/vivliostyle/vivliostyle.js/issues/981)**, in future all usage will be moved back to `footnote` class.
+
+- 多段組のページで、段落をぶち抜かずに段落内末尾につけられる脚注を追加。
+  - `[_脚注内テキスト_]{.incolumn_footnote}`で使えます。
+  - 今回の実装は**[vivliostyleのissue]https://github.com/vivliostyle/vivliostyle.js/issues/981)にあるとおり、@footnoteがサポートされるまでの暫定的なもの**です。`@footnote`がサポートされた後は0.0.3の`footnote`に一本化されます。
+
 ## 0.0.4 - 2022-09-01
 
 ### Changed
-- decoupled `h1`- `h2` tag and display info to allow flexible hiearchical structure.
+- decoupled `h1`- `h6` tag and display style as class to allow flexible hiearchical structure.
   - header element now requires class `title`. e.g.  `# chaptertitle {.title}`. `subtitle`, `author` class can be also set added under `shortstory` class.
-- ToC can now handle generation of hiearchical table.
+  - ToC can now be generated as hiearchical lists.
 - 階層構造を持った章立てが作れるように。行頭 `#` の個数が`src.json`中の`section_depth`より大きいものは見出しに反映されます。
   - これにより、第一部-第一章といった階層構造のある章立てをつくることができます。
+  - 表示上の情報は `# 見出し名{.クラス}`の`.クラス`で定義され、現在は本文中は`title`、`subtitle`、`author`などを指定できます。本文要素内中扉は`single_element_page`で指定できます。
 
 ## 0.0.3 - 2022-08-15
 

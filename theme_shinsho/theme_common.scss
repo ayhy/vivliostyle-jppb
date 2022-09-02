@@ -748,7 +748,7 @@ section[role='colophon'] {
   text-orientation: upright;
 }
 
-/* 短い脚注 inline-note*/
+/* 1-column foonote 段組を貫通する脚注 */
 .footnote {
   float:footnote;
   font-size: 75%;
@@ -786,7 +786,40 @@ section[role='colophon'] {
   }
 }
 
-
+/* multi-column footnote 段組を貫通しない脚注 */
+/* @footnoteが整備されるまでのworkaround
+   workaroundのため内部に別のタグが必要 - <em>や<span>など */
+.incolumn_footnote {
+  counter-increment: footnote;
+  &::before{ /* ::footnote-marker相当 - 本文側 */
+    /*background-color: red;*/
+    text-combine-upright: all;
+    font-weight: bold;
+    content: "[" counter(footnote) "]";
+    text-align: center;
+    vertical-align: bottom;
+    margin-top:0.0rem;
+    margin-bottom:0.0rem;
+    font-size: 50%;
+  }
+  & >*::before{ /* ::footnote-call相当 - 脚注側 */
+    /*background-color: blue;*/
+    content: "[" counter(footnote) "]";
+    text-combine-upright: all;
+    text-align: center;
+    margin-top: 0rem;
+    font-size: 75%;
+  }
+  &> * {
+    font-weight: normal;
+    font-style: normal;
+    float-reference: column;
+    float: block-end;
+    padding-block-start: 0.5em;
+    /*background: lime;*/
+    font-size: 75%;
+  }
+}
 
 /* 傍点（・） */
 .dotted {
@@ -794,6 +827,22 @@ section[role='colophon'] {
   text-emphasis-style: dot;
 }
 
+.footnote {
+  background-color: red;
+  counter-increment: footnote;
+  &::before,
+  & >*::before{
+    content: "[" counter(footnote) "]";
+  }
+  &> * {
+    font-weight: normal;
+    font-style: normal;
+    float-reference: column;
+    float: block-end;
+    padding-block-start: 0.5em;
+    background: lime;
+  }
+}
 
 /* 圏点（ゴマ） */
 em.sesame_dot {

@@ -23,6 +23,9 @@ html {
   text-justify:  inter-character;
   text-align: justify;
 
+}
+
+body{
   column-count:$columns;
   column-gap: $column_gap_val;
   column-fill:auto;
@@ -33,24 +36,10 @@ html {
   margin-left:$additonal_margin;
   margin-right:$additonal_margin;
 
-}
-
-body{
-
   text-align-last: left; /* paged media containerの左右への影響を避けるためここに書く */
-  }
-  
-/* footnote関連: WIP */
-/*
-@-adapt-footnote-area {
-    background-color:red;
-    display: block;
-    padding:0;
-    column-count:$columns;
-    column-fill:auto;
-}
-*/
 
+/* footnote関連 */
 @-adapt-footnote-area ::before {
     display: none;
 }
+
