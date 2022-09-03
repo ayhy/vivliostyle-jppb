@@ -1,9 +1,15 @@
 # Change Log
 
+## 0.0.6 - 2022-09-04
+
+### Added
+ - `src.json` now specifies `name` and `author` under `pubinfo`. In default style, `name` string is copied to `publication.json` and appears along with  page number in body section.
+ - `name`と`author`を`src.json`の`pubinfo`内から指定するように。`name`のテキストはデフォルト状態では本文左ページのページ番号の隣に題名として表示されます。
+
 ## 0.0.5 - 2022-09-02
 
 ### Added
-- New footnotes style that can be set the end of the column in multi-column area, as opposed to the end of the page. 
+- New footnotes style that can be set at the end of the column in multi-column area, as opposed to the end of the page. 
   - usage: `[_footnote text_]{.incolumn_footnote}` in multi-column text.
   - Please note this is a __workaround implelentation as noted in [vivliostyle issue](https://github.com/vivliostyle/vivliostyle.js/issues/981)__, in future all usage will be moved back to `footnote` class.
 

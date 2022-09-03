@@ -120,10 +120,10 @@ body > section {
 }
 
 @page illust{
-  margin-top: 0mm; /*天*/
-  margin-bottom: 0mm; /*地*/
-  margin-left: 0mm; /*小口*/
-  margin-right: 0mm; /*小口*/
+  margin-top: 0px; /*天*/
+  margin-bottom: 0px; /*地*/
+  margin-left: 0px; /*小口*/
+  margin-right: 0px; /*小口*/
   background-color: red;
   @bottom-left { content: none; }
   @bottom-right { content: none; }
@@ -543,7 +543,7 @@ section[role="doc-body"] {
     img{
       position:relativea;
       /*opacity: 50%; 動作確認用*/
-      margin: calc(0mm - param.$bleedmargin) calc(0mm - 1.1 * param.$bleedmargin);
+      margin: calc(0mm - 1.005*param.$bleedmargin) calc(0mm - 1.005 * param.$bleedmargin);
       /*1.0きっかりだと隣にはみ出して空ページが出来てしまうので苦肉の策*/
       width:calc(param.$page_width + ( 2 * param.$bleedmargin) );
       height:calc(param.$page_height + ( 2 * param.$bleedmargin) );
@@ -800,7 +800,7 @@ section[role='colophon'] {
     vertical-align: bottom;
     margin-top:0.0rem;
     margin-bottom:0.0rem;
-    font-size: 50%;
+    font-size: 75%;
   }
   & >*::before{ /* ::footnote-call相当 - 脚注側 */
     /*background-color: blue;*/

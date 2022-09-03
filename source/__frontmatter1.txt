@@ -7,7 +7,7 @@ Powered by Vivliostyle
 
 <!--タイトル-->
 :::{.maintitle} 
-文体操舵録 
+文体操舵録
 :::
 
 <!--副題（あれば）-->

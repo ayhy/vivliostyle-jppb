@@ -125,6 +125,12 @@ def readJsonConfig(srcjsonfile): #return list of pandoc commands for each file
             backArg = " ".join(backArg)
             pandocCommandDict["srcAndArg"] = pandocCommandDict["srcAndArg"] + [{"type":"backmatter","input":backSrc, "arg":backArg}]
 
+  
+        #create pubinfo for webpub
+        pandocCommandDict["pubinfo"]={"name":"","author":""}
+        if "pubinfo" in data:
+            pandocCommandDict["pubinfo"]=data["pubinfo"]
+        
         #create readingorder for webpub
         frontmatterdict = [{"url":data["frontmatter"]["titlepage"]["output"],
                             "name":data["frontmatter"]["titlepage"]["title"],
@@ -137,7 +143,7 @@ def readJsonConfig(srcjsonfile): #return list of pandoc commands for each file
                            {"url":data["frontmatter"]["halftitle"]["output"],
                             "name":data["frontmatter"]["halftitle"]["title"],
                             "category":"post_toc"}]
-        chapterdictlist = [{"url":mychapter["output"],"name":"","category":"body"} for mychapter in data["body"]["file"]]
+        chapterdictlist = [{"url":mychapter["output"],"name":mychapter["title"],"category":"body"} for mychapter in data["body"]["file"]]
         backmatterdict = [{"url":data["backmatter"]["output"],"name":data["backmatter"]["title"],"category":"backmatter"}]
 
         pandocCommandDict["readingOrder"] = frontmatterdict + chapterdictlist + backmatterdict
@@ -167,11 +173,13 @@ def subprocess_outputAll(fullcmdinput):
     print('returned {0}'.format(returncode))
     print(process.stdout.read())
     print(process.stderr.read())
+    
 
 def buildHtml(pandocCommandDict):
     pandoc_cmd = "pandoc"
     if len(pandocCommandDict["pandocpath"])>0:
         pandoc_cmd = os.path.realpath(os.path.join(pandocCommandDict["pandocpath"],pandoc_cmd))
+        
     print("checking pandoc version")
     fullcmd = pandoc_cmd + " -v"
     subprocess_outputAll(fullcmd)
@@ -192,7 +200,7 @@ def buildHtml(pandocCommandDict):
 #pandoc's  --toc option will generate link to #idname but not file.html#idname.
 #using readingOder, files with category:"toc" are updated their link based on files with category:body.
 def updateToCLink(configDict):
-    print("updating ToC with readingOrder")
+    print("updating web publication manifest, overwriting book title, author name and  with readingOrder")
 #    print(readingOrder)
     readingOrder = configDict["readingOrder"]
     tocpathList=[]
@@ -205,9 +213,9 @@ def updateToCLink(configDict):
             bodypathList = bodypathList + [section["url"]]
             with open(section["url"],"r",encoding="utf-8") as bodyhtml:
                 bodysource = bodyhtml.read()
-                regex = re.compile("id=[^\n\r\s]+.*?")
+                regex = re.compile("section id=[^\n\r\s]+.*?")
                 section_ids=re.findall(regex,bodysource)
-                section["name"] = section_ids[0][3:-1].replace("'","").replace('"','')
+                section["name"] = section_ids[0][11:-1].replace("'","").replace('"','')
 
     for bodypath in bodypathList:
         with open(bodypath,"r",encoding="utf-8") as bodyhtml:
@@ -254,6 +262,8 @@ def updatePubJson(configDict):
         if os.path.getsize("publication.json") > 0:
             with io.open('publication.json', 'r', encoding="utf-8") as jsonfile:
                 publication=json.load(jsonfile)
+    publication["author"] = configDict["pubinfo"]["author"]
+    publication["name"] =  configDict["pubinfo"]["name"]
     publication["readingOrder"] = readingOrder
     
     with open("publication.json", "w", encoding="utf-8") as outfile:
@@ -262,6 +272,7 @@ def updatePubJson(configDict):
         outfile.write(rawstring)
 #        json.dump(publication, outfile, indent = 2, separators=(',',":"))
     return configDict
+
 
 def deleteTempfiles(configDict):
     if "tempfiles" in configDict:

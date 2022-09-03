@@ -24,7 +24,8 @@ vivliostyle build publication.json
 ```
 
 ### 補足
-* `generate_publication.py`はそれだけだとスクリプトのあるフォルダ内のsrc.jsonを読んで処理を行います。それ以外の名前のjsonファイルや、別フォルダでにあるjsonファイルを指定して`python generate_publication.py book1/src2.json`のように実行することもできます。publication.jsonは指定したjsonファイルと同一のフォルダ内に生成され、既に存在している場合はreadingOrderの内容を上書きします。
+* `generate_publication.py`はそれだけだとスクリプトのあるフォルダ内のsrc.jsonを読んで処理を行います。それ以外の名前のjsonファイルや、別フォルダでにあるjsonファイルを指定して`python generate_publication.py book1/src2.json`のように実行することもできます。
+* publication.jsonは指定したjsonファイルと同一のフォルダ内に生成され、既に存在している場合は`src.json`で指定した`author`、`name`および`readingOrder`の内容を上書きします。
 
 
 ## 簡易制作ガイド
