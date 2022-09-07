@@ -14,7 +14,7 @@
       "category":"pre_toc"
     },
     {
-      "url":"test01toc.html",
+      "url":"test01toc40item.html",
       "name":"目次",
       "category":"toc",
       "rel":"contents",
@@ -78,51 +78,6 @@
     {
       "url":"test03ch11.html",
       "name":"視点と語りの声11",
-      "category":"body"
-    },
-    {
-      "url":"test03ch12.html",
-      "name":"視点と語りの声12",
-      "category":"body"
-    },
-    {
-      "url":"test03ch13.html",
-      "name":"視点と語りの声13",
-      "category":"body"
-    },
-    {
-      "url":"test03ch14.html",
-      "name":"視点と語りの声14",
-      "category":"body"
-    },
-    {
-      "url":"test03ch15.html",
-      "name":"視点と語りの声15",
-      "category":"body"
-    },
-    {
-      "url":"test03ch16.html",
-      "name":"視点と語りの声16",
-      "category":"body"
-    },
-    {
-      "url":"test03ch17.html",
-      "name":"視点と語りの声17",
-      "category":"body"
-    },
-    {
-      "url":"test03ch18.html",
-      "name":"視点と語りの声18",
-      "category":"body"
-    },
-    {
-      "url":"test03ch19.html",
-      "name":"視点と語りの声19",
-      "category":"body"
-    },
-    {
-      "url":"test03ch20.html",
-      "name":"視点と語りの声20",
       "category":"body"
     },
     {

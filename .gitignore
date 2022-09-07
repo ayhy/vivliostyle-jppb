@@ -1,6 +1,5 @@
 *.lnk
 *.tmp
-*.pdf
 *_wip.*
 git
 node_modules

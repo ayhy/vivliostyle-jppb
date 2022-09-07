@@ -14,7 +14,7 @@
       "category":"pre_toc"
     },
     {
-      "url":"test01toc.html",
+      "url":"test01tocnosub.html",
       "name":"目次",
       "category":"toc",
       "rel":"contents",
@@ -113,16 +113,6 @@
     {
       "url":"test03ch18.html",
       "name":"視点と語りの声18",
-      "category":"body"
-    },
-    {
-      "url":"test03ch19.html",
-      "name":"視点と語りの声19",
-      "category":"body"
-    },
-    {
-      "url":"test03ch20.html",
-      "name":"視点と語りの声20",
       "category":"body"
     },
     {
