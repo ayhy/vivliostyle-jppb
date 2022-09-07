@@ -400,7 +400,7 @@ section[role="halftitle"] {
   page: frontmatter;
   h1,h2,h3,h4,h5,h6{
     font-size: calc(param.$body_letter_size * 3);
-    font-style: bold;
+    font-weight: bold;
     font-family: 'Zen Old Mincho', serif;
   }
   position: absolute;
@@ -444,7 +444,7 @@ section[role="doc-body"] {
     display:block;
 /*    position:absolute;*/
     font-size: 12pt;
-    font-style: bold;
+    font-weight: bold;
     line-height:calc(2 * param.$body_line_height);
 
     /* 第N章　の表示を自動生成する場合にコメントアウトする*/
