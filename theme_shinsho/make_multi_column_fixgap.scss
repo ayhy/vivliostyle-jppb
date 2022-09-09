@@ -12,8 +12,8 @@ $line_height: param.$body_line_height;
 $additonal_margin: calc( ( param.$page_width - param.$lrmargin - param.$bindmargin - ($rows * $line_height) ) *0.5 );
 /*ページ幅 - 小口 - ノド - 行数x行間で、本文のマージンの余剰不足を計算*/
 
-$column_gap_val: (param.$page-height - param.$topmargin - param.$bottommargin - ($letters * $columns * ( $letter_size + $letter_spacing - $columns*$letter_spacing ) ))/($columns - 1);
-/*(ページ高さ - 天地 - (文字数x段数x(文字サイズ+字間) - 段数x字間 ))/(段数-1)  で必要な段落間を計算*/
+$column_gap_val: (param.$page-height - param.$topmargin - param.$bottommargin - ($letters * $columns * ( $letter_size + $letter_spacing ) ))/($columns - 1);
+/*(ページ高さ - 天地 - (文字数x段数x(文字サイズ+字間) ))/(段数-1)  で必要な段落間を計算*/
 
 
 html {
@@ -26,6 +26,7 @@ html {
 }
 
 body{
+  background-color: lightcoral;
   column-count:$columns;
   column-gap: $column_gap_val;
   column-fill:auto;
