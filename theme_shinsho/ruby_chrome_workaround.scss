@@ -1,0 +1,47 @@
+/*chromiumの縦書きでルビの表示位置を本文寄りに詰めるworkaround*/
+/* ruby-align:space-aroundに近い表示を人力実装 */
+
+/*確認用*/
+/*
+//各枠の表示色
+ruby{
+    rb{
+        background-color:gray;
+    }
+    rt{
+        background-color: lightblue;
+    }
+}
+
+//行幅比較
+section{
+    line-height:1.2em;
+}
+*/
+
+
+@supports ( -moz-appearance:none ){
+    ruby{
+      margin-right:-6px;
+      display: inline-flex;
+      flex-direction: column-reverse;
+      justify-content: flex-end;
+      rb, rt {
+        display: inline;
+        line-height: 1;
+        margin: auto;
+        text-align: justify;
+        text-align-last: justify;
+        text-justify:inter-word;
+      }
+      & > rb{
+        min-height:75%;
+      }
+      & > rt {
+        min-height:100%;
+        letter-spacing: 0px;
+        margin-left: -3px; // ここの指定でルビ位置を詰める
+        margin-right:-1em;
+    }
+  }
+}

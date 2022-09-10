@@ -1,5 +1,18 @@
 # Change Log
 
+## 0.0.7 - 2022-09-11
+
+### Added
+- `dotted` and `sesame_dot` class now can be implemented ruby form opposed to `text-emphasis` style. This is off by default and can be enabled by adding `"./utils/emphasize_as_ruby.lua"` in `src.json > pandoc > lua-filter`. This was added based on the concern of `text-emphasis` class does not have custmization in font size and location which `ruby` has.
+  - Note: any markup or markdown syntax within `dotted` or `sesame_dot` will be ignored and treated as pure text.
+- `ruby_chrome_workaround.scss` has been added to allow better ruby placing in chrome. To enable this, add `"./theme_shinso/ruby_chrome_workaround.css"` __after__ "./theme_shinsho/make_multi_column.css".
+  - Note: the leter/word spacing result may differ from original ruby.
+- 圏点(`dotted`クラス)と傍点(`sesame_dot`クラス)をルビとして表示できるように。これはtext-emphasisで指定すると傍点や圏点の位置が調整できず、圏点を指定した箇所の行間が他の行より広くなってしまう問題に対応するものです。
+  - otted、sesame_dotに指定したクラス内は、内部のマークダウン記法やhtmlは無視された単純テキストとして扱われます。
+- 同様に、chromiumでは行間指定が効かなくなった問題を回避するため、chrome用のworkaroundスタイル`ruby_chrome_workaround.scss`を追加。
+  - これを使用した場合、デフォルトのルビとは字間が異なって表示されます。
+
+
 ## 0.0.6 - 2022-09-04
 
 ### Added

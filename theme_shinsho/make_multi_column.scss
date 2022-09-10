@@ -12,8 +12,9 @@ $line_height: param.$body_line_height;
 $additonal_margin: calc( ( param.$page_width - param.$lrmargin - param.$bindmargin - ($rows * $line_height) ) *0.5 );
 /*ページ幅 - 小口 - ノド - 行数x行間で、本文のマージンの余剰不足を計算*/
 
-$column_gap_val: (param.$page-height - param.$topmargin - param.$bottommargin - ($letters * $columns * ( $letter_size + $letter_spacing ) - $columns*$letter_spacing ))/($columns - 1);
-/*ページ高さ -天地 - 文字数x段落数x文字サイズx字間/(段落数-1) で必要な段落数を計算*/
+$column_gap_val: (param.$page-height - param.$topmargin - param.$bottommargin - ($letters * $columns * ( $letter_size + $letter_spacing ) ))/($columns - 1);
+/* (ページ高さ - 天地 - 文字数 x 段落数 x (文字サイズ+字間) )/(段落数-1) で必要な段落間隔を計算*/
+/* 現時点でのletter-spacingは字間ではなく全ての文字の後に一括でつくので 字間*段落数を引いて調整する必要はない　*/
 
 html {
   font-family:'Gilda Display', 'GenEiChikuMin', serif;
@@ -42,4 +43,3 @@ body{
 @-adapt-footnote-area ::before {
     display: none;
 }
-
